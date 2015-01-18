@@ -1,14 +1,14 @@
 from fake_distance_sensor import *
-from motor import *
+from fake_motor import *
 
 class Robot(object):
   
-  def __init__(self, distance_sensor=FakeDistanceSensor()):
+  def __init__(self, distance_sensor=FakeDistanceSensor(), motor_right=FakeMotor('right', 0, 0), motor_left=FakeMotor('left', 0, 0)):
     super(Robot, self).__init__()
 
     self.distance_sensor = distance_sensor
-    self.motor_right = Motor('right')
-    self.motor_left = Motor('left')
+    self.motor_right = motor_right
+    self.motor_left = motor_left
 
   def something_in_way(self):
     return self.distance_sensor.distance() < 5
