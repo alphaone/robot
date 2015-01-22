@@ -1,7 +1,7 @@
 import time
 import random
 
-class Strategy(object):
+class AutonomousStrategy(object):
   
   def __init__(self, robot):
     super(Strategy, self).__init__()
@@ -30,4 +30,4 @@ class Strategy(object):
       else:
         self.robot.drive_right()
 
-      time.sleep(0.01)
+      time.sleep(0.1)

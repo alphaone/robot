@@ -15,15 +15,28 @@ class Motor(object):
     self.fwd.start(0)
     self.fwd.start(0)
 
-    self.speed = 75
+    self.speed = 0
 
     
   def stop(self):
     self.fwd.ChangeDutyCycle(0)
     self.rev.ChangeDutyCycle(0)
 
-  def forward(self):
-    self.fwd.ChangeDutyCycle(self.speed)
-    self.rev.ChangeDutyCycle(0)
+  def forward(self, speed):
+    self.speed = speed
+
+    if self.speed >= 100:
+      self.speed = 100
+    if self.speed <= -100:
+      self.speed = -100
+
+    print "Motor %s speed %s", (self.name, self.speed)
+
+    if self.speed >= 0:
+      self.fwd.ChangeDutyCycle(self.speed)
+      self.rev.ChangeDutyCycle(0)
+    else:
+      self.fwd.ChangeDutyCycle(0)
+      self.rev.ChangeDutyCycle(-self.speed)
     
 
